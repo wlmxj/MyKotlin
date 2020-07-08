@@ -1,17 +1,21 @@
 package com.wl.mykotlintest.ac
 
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.base.BaseActivity
-import com.wl.mykotlintest.R
 import com.wl.mykotlintest.BR
+import com.wl.mykotlintest.R
 import com.wl.mykotlintest.adapter.StudentAdapter
+import com.wl.mykotlintest.command.BindingAction
+import com.wl.mykotlintest.command.BindingCommand
 import com.wl.mykotlintest.databinding.ActivityRecyclerviewBinding
 import com.wl.mykotlintest.model.User
+import com.wl.mykotlintest.testCode.TestClick
 import com.wl.mykotlintest.vm.UserViewModel
+import com.wl.mykotlintest.testCode.TestClick.CommmandClick
+
 import kotlinx.android.synthetic.main.activity_recyclerview.*
 
 /**
@@ -58,6 +62,33 @@ class RecyclerViewActivity :BaseActivity<ActivityRecyclerviewBinding, UserViewMo
             user.firstname.set("更改后的名字${i}")
         }
 
-
     }
+
+//     val clickTest:BindingCommand<Boolean> = BindingCommand(object : BindingAction{
+//             override fun call() {
+//                 userList?.let {
+//                     for ((i, user) in userList.withIndex()) {
+//                         user.firstname.set("更改后的名字${i}")
+//                     }
+//                 }
+//
+//             }
+//         })
+
+    val clicktest:TestClick by lazy {
+
+        TestClick(object : CommmandClick {
+            override fun clickAction() {
+                Log.e("wl","hahaclick")
+                userList?.let {
+                     for ((i, user) in userList.withIndex()) {
+                         user.firstname.set("更改后的名字${i}")
+                     }
+                 }
+            }
+
+        })
+    }
+
+     var mAddTxt = "加一"
 }

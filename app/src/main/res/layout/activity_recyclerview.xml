@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wl="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="activity"
             type="com.wl.mykotlintest.ac.RecyclerViewActivity" />
@@ -12,13 +12,12 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <Button
             android:id="@+id/bt_add"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:onClick="@{activity::onClick}"
-            android:text="加一" />
+            wl:clicktest = "@{activity.clicktest}"
+            wl:txt="@{activity.mAddTxt}"  />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"

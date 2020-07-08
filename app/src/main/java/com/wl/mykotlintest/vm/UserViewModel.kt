@@ -13,10 +13,5 @@ Description:
  */
 class UserViewModel : ViewModel() {
     val userLiveData = MutableLiveData<String>("init")
-    init {
-        viewModelScope.launch {
-            delay(3000)
-            userLiveData.value = "lanch改变了"
-        }
-    }
+
 }

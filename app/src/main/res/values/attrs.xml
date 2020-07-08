@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="onClickCommand" format="reference" />
+    <attr name="clicktest" format="reference" />
+    <declare-styleable name="View">
+        <attr name="clicktest" />
+    </declare-styleable>
+</resources>

@@ -3,6 +3,8 @@ package com.wl.mykotlintest
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.GenericLifecycleObserver
 import androidx.lifecycle.Observer
 import com.example.base.BaseActivity
 import com.wl.mykotlintest.ac.RecyclerViewActivity
@@ -10,6 +12,7 @@ import com.wl.mykotlintest.databinding.ActivityMainBinding
 import com.wl.mykotlintest.model.UserModel
 import com.wl.mykotlintest.vm.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
     private val mUserModel: UserModel by lazy {
@@ -54,6 +57,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
             Log.e("wl","name:$username---password:$password")
             tv_show.text  = "改变了。同志们哈"
         }
+
+//        lifecycle.addObserver(GenericLifecycleObserver { source, event ->
+//            Log.d(
+//                FragmentActivity.TAG,
+//                "onStateChanged: event =$event"
+//            )
+//        })
 
     }
 
