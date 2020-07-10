@@ -63,5 +63,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             wl:txt="@{userViewModel.userLiveData}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取sd卡权限"
+            android:onClick="@{activity::requestPermision}"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </layout>

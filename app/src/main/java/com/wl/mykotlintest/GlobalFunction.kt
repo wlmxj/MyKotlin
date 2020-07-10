@@ -82,3 +82,4 @@ fun <T : View> T.singleClick(onClickListener: View.OnClickListener, time: Long =
 var <T : View> T.lastClickTime: Long
     set(value) = setTag(1766613352, value)
     get() = getTag(1766613352) as? Long ?: 0
+
