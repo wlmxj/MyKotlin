@@ -23,6 +23,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".ac.RecyclerViewActivity" />
+        <activity
+            android:name="com.wl.mykotlintest.ac.MyCaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CaptureTheme"/>
+        <activity android:name=".ac.MyImageSelector" />
+        <activity android:name=".ac.SimplePictuerActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

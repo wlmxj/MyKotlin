@@ -5,9 +5,6 @@ package com.wl.mykotlintest
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -18,7 +15,11 @@ import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.example.base.BaseActivity
+import com.king.zxing.CaptureActivity
+import com.wl.mykotlintest.ac.MyCaptureActivity
+import com.wl.mykotlintest.ac.MyImageSelector
 import com.wl.mykotlintest.ac.RecyclerViewActivity
+import com.wl.mykotlintest.ac.SimplePictuerActivity
 import com.wl.mykotlintest.databinding.ActivityMainBinding
 import com.wl.mykotlintest.model.UserModel
 import com.wl.mykotlintest.utils.PathUtils
@@ -28,8 +29,6 @@ import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
 import com.zhihu.matisse.internal.entity.CaptureStrategy
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import java.io.File
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
@@ -85,6 +84,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
 //                "onStateChanged: event =$event"
 //            )
 //        })
+        bt_click.singleClick (10000){
+            LogUtils.e("wl","click")
+        }
+        bt_zixing.singleClick {
+            //跳转的默认扫码界面
+
+            //跳转的默认扫码界面https://www.jianshu.com/p/168bef5526ae
+//            startActivityForResult(Intent(this, MyCaptureActivity::class.java), 200)
+        }
 
     }
 
@@ -93,8 +101,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
     }
 
     fun onTestClick(view:View){
-        Toast.makeText(this,"d：haha",Toast.LENGTH_SHORT).show()
-        startActivity<RecyclerViewActivity>("key" to "value")
+        Toast.makeText(this,"的看来发静安寺会计法圣诞快乐放假啊上课兼电费卡设计费杰卡斯都结束了咖啡机爱斯达克连接发" +
+                "拉开金飞达手机开发" +
+                "大杀四方静安寺令肌肤的撒娇疯狂夺金阿斯蒂芬就打上来就大家可理发师积分多少a" +
+                "几率大激发上课兼大家可劳动法静安寺打开来得及啊",Toast.LENGTH_SHORT).show()
+//        startActivity<RecyclerViewActivity>("key" to "value")
     }
 
     fun requestPermision(view:View){
@@ -106,7 +117,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
                     if (permissionsGranted.size == 2) {
                     }
 //                    itemsView.updateItems(bindItems())
-                    startImagePicker()
+//                    startImagePicker()//第一种方式
+                    //第二种方式
+                    startActivity(Intent(this@MainActivity,MyImageSelector::class.java))
                 }
 
                 override fun onDenied(permissionsDeniedForever: List<String>,
@@ -146,14 +159,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
            val result2 =  Matisse.obtainPathResult(data)
 //            Log.d("Matisse", "mSelected: " + mSelected);
             image_view.setImageBitmap(PathUtils.getLoacalBitmap(result2[0]))
-            LogUtils.e("result:${PathUtils.getLoacalBitmap(result2[0])}")
+            LogUtils.e("result:${result2[0]}")
 //            val bitmap = BitmapFactory.decodeStream(
 //                contentResolver
 //                .openInputStream(obtainResult[0]))
 //            //将裁剪后的图片显示出来
 //            image_view.setImageBitmap(bitmap)
 
-            LogUtils.d(result2.toString())
+            LogUtils.d("嗯嗯${obtainResult.toString()}")
         }
+    }
+
+    fun selectPic(view:View){
+        startActivity<SimplePictuerActivity>()
     }
 }

@@ -3,4 +3,6 @@
     <string name="username">用户名</string>
     <string name="login">登录</string>
     <string name="password">请输入密码</string>
+    <string name="app_drag_delete">拖动到此处删除</string>
+    <string name="app_let_go_drag_delete">松手即可删除</string>
 </resources>
