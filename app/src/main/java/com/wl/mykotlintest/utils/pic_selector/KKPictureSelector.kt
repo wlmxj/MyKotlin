@@ -30,11 +30,11 @@ class KKPictureSelector constructor(builder: Builder) {
 
     fun create() {
         pSelector = when {
-            mBuilder!!.mActivity!!.get() != null -> {
-                PictureSelector.create(mBuilder!!.mActivity!!.get())
+            mBuilder!!.mActivity != null -> {
+                PictureSelector.create(mBuilder!!.mActivity)
             }
             else -> {
-                PictureSelector.create(mBuilder!!.mFragment!!.get())
+                PictureSelector.create(mBuilder!!.mFragment)
             }
         }
         pSelector?.let {
@@ -49,6 +49,7 @@ class KKPictureSelector constructor(builder: Builder) {
                 .selectionMode(getSelectMode(mBuilder!!.mSelectMode))
                 .forResult(object : OnResultCallbackListener<LocalMedia?> {
                     override fun onResult(result: MutableList<LocalMedia?>?) {
+                        var list = mutableListOf<String>()
                         for (media in result!!) {
                             Log.i(MyImageSelector.TAG, "是否压缩:" + media?.isCompressed)
                             Log.i(MyImageSelector.TAG, "压缩:" + media?.compressPath)
@@ -57,7 +58,19 @@ class KKPictureSelector constructor(builder: Builder) {
                             Log.i(MyImageSelector.TAG, "裁剪:" + media?.cutPath)
                             Log.i(MyImageSelector.TAG, "是否开启原图:" + media?.isOriginal)
                             Log.i(MyImageSelector.TAG, "原图路径:" + media?.originalPath)
+                           val path = if (media!!.isCut && !media.isCompressed) {
+                                // 裁剪过
+                                media.cutPath
+                            } else if (media.isCompressed || media.isCut && media.isCompressed) {
+                                // 压缩过,或者裁剪同时压缩过,以最终压缩过图片为准
+                                media.compressPath
+                            } else {
+                                // 原图
+                                media.path
+                            }
+                            list.add(path)
                         }
+                        mBuilder!!.mCallBack!!.onSelectResult(list)
                     }
 
                     override fun onCancel() {
@@ -93,20 +106,20 @@ class KKPictureSelector constructor(builder: Builder) {
         internal var mIsCamera = false
         internal var mSelectMode = SINGLE
         internal var mCallBack: OnPictureSelectResult<*>? = null
-        internal var mActivity: WeakReference<Activity?>? = null
-        internal var mFragment: WeakReference<Fragment?>? = null
+        internal var mActivity: Activity? = null
+        internal var mFragment: Fragment? = null
 
         private constructor(activity: Activity?, fragment: Fragment?) : this() {
-            mActivity = WeakReference(activity)
-            mFragment = WeakReference(fragment)
+            mActivity = activity
+            mFragment = fragment
         }
 
-         constructor(activity: Activity):this() {
-            Builder(activity, null)
+         constructor(activity: Activity):this(activity,null) {
+//            Builder(activity, null)
         }
 
-         constructor(fragment: Fragment) :this(){
-            Builder(fragment.activity, fragment)
+         constructor(fragment: Fragment) :this(null,fragment){
+//            Builder(fragment.activity, fragment)
         }
 
         /**

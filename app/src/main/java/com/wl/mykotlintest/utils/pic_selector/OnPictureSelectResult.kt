@@ -8,6 +8,9 @@ Author:wl
 Description:
  */
 interface OnPictureSelectResult<T> : OnResultCallbackListener<T>{
-    fun onSelectResult():List<String>
-
+    fun onSelectResult(list:List<String>)
+    override fun onResult(result: MutableList<T>?) {
+    }
+    override fun onCancel() {
+    }
 }
