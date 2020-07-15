@@ -105,7 +105,7 @@ class KKPictureSelector constructor(builder: Builder) {
         internal var mIsOpenCamera = false
         internal var mIsCamera = false
         internal var mSelectMode = SINGLE
-        internal var mCallBack: OnPictureSelectResult<*>? = null
+        internal var mCallBack: OnPictureSelectResult? = null
         internal var mActivity: Activity? = null
         internal var mFragment: Fragment? = null
 
@@ -157,7 +157,7 @@ class KKPictureSelector constructor(builder: Builder) {
         /**
          * 回调接口
          */
-        fun <T> forResult(callBack: OnPictureSelectResult<T>): Builder {
+        fun  forResult(callBack: OnPictureSelectResult): Builder {
             mCallBack = callBack
             return this
         }
