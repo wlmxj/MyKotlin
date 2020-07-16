@@ -209,5 +209,9 @@ class KKTimePickerBuilder(context: Context, listener: OnTimeSelectListener) :
         return this
     }
 
+     fun create(): KKTimePickerView {
+        return KKTimePickerView().addView(super.build())
+    }
+
 
 }

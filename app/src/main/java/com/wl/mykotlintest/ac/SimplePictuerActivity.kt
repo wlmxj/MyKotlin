@@ -21,6 +21,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.wl.mykotlintest.R
 import com.wl.mykotlintest.pickerview.KKOnTimeSelectListener
 import com.wl.mykotlintest.pickerview.KKPickerViewManager
+import com.wl.mykotlintest.pickerview.PickerViewType
 import com.wl.mykotlintest.utils.Utils
 import com.wl.mykotlintest.utils.pic_selector.KKPictureSelector
 import com.wl.mykotlintest.utils.pic_selector.MULTIPLE
@@ -140,9 +141,15 @@ class SimplePictuerActivity : AppCompatActivity() {
 
         bt_timer_picker.setOnClickListener {
 //            initTimePicker(bt_timer_picker)
-            KKPickerViewManager.showPickerView(this@SimplePictuerActivity,bt_timer_picker,object :KKOnTimeSelectListener{
+//            KKPickerViewManager.showTimerPickerView(this@SimplePictuerActivity,bt_timer_picker,object :KKOnTimeSelectListener{
+//                override fun onSelet(date: Date?, v: View?) {
+//                    LogUtils.d("结果：${date?.let { it1 -> Utils.getTime(it1) }}")
+//                }
+//
+//            })
+            KKPickerViewManager.showPickerView(PickerViewType.TYPE_ADDRESS,this,bt_timer_picker,object :KKOnTimeSelectListener{
                 override fun onSelet(date: Date?, v: View?) {
-                    LogUtils.d("结果：${date?.let { it1 -> Utils.getTime(it1) }}")
+                    LogUtils.e(date?.let { it1 -> Utils.getTime(it1) })
                 }
 
             })
