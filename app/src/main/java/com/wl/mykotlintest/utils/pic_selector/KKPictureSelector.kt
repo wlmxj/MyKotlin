@@ -4,6 +4,8 @@ import android.app.Activity
 import android.util.Log
 import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.blankj.utilcode.util.TouchUtils
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.camera.CustomCameraView
 import com.luck.picture.lib.config.PictureConfig
@@ -74,7 +76,7 @@ class KKPictureSelector constructor(builder: Builder) {
                     }
 
                     override fun onCancel() {
-                        TODO("Not yet implemented")
+                        ToastUtils.showShort("cancle")
                     }
 
                 })

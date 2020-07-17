@@ -6,6 +6,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
+<!--    扫码需要以下两个权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,6 +34,7 @@
             android:theme="@style/CaptureTheme"/>
         <activity android:name=".ac.MyImageSelector" />
         <activity android:name=".ac.SimplePictuerActivity" />
+        <activity android:name=".ac.QRCodeActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

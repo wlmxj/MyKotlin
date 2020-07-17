@@ -16,10 +16,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.example.base.BaseActivity
 import com.king.zxing.CaptureActivity
-import com.wl.mykotlintest.ac.MyCaptureActivity
-import com.wl.mykotlintest.ac.MyImageSelector
-import com.wl.mykotlintest.ac.RecyclerViewActivity
-import com.wl.mykotlintest.ac.SimplePictuerActivity
+import com.wl.mykotlintest.ac.*
 import com.wl.mykotlintest.databinding.ActivityMainBinding
 import com.wl.mykotlintest.model.UserModel
 import com.wl.mykotlintest.utils.PathUtils
@@ -92,6 +89,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, UserViewModel>() {
 
             //跳转的默认扫码界面https://www.jianshu.com/p/168bef5526ae
 //            startActivityForResult(Intent(this, MyCaptureActivity::class.java), 200)
+
+            startActivity<QRCodeActivity>()
         }
 
     }
